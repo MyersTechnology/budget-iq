@@ -30,7 +30,7 @@ const InsightCard = ({ insight, delay = 0 }: InsightCardProps) => {
           icon: <AlertTriangle className="h-5 w-5" />,
           color: 'text-budget-orange bg-budget-orange/10'
         };
-      case 'success':
+      case 'savings':
         return {
           icon: <CheckCircle2 className="h-5 w-5" />,
           color: 'text-budget-green bg-budget-green/10'
@@ -65,16 +65,13 @@ const InsightCard = ({ insight, delay = 0 }: InsightCardProps) => {
             <h3 className="font-medium text-base leading-none mb-2">{insight.title}</h3>
             <p className="text-muted-foreground text-sm">{insight.description}</p>
             
-            {insight.actionText && insight.actionUrl && (
+            {insight.action && (
               <Button 
                 variant="link" 
                 className="px-0 h-8 font-medium -ml-3 mt-1" 
-                asChild
               >
-                <a href={insight.actionUrl}>
-                  {insight.actionText}
-                  <ArrowRight className="ml-1 h-4 w-4" />
-                </a>
+                {insight.action}
+                <ArrowRight className="ml-1 h-4 w-4" />
               </Button>
             )}
           </div>
