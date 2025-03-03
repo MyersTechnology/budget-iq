@@ -198,8 +198,8 @@ export const generateInsights = (): Insight[] => {
     {
       id: 'insight-2',
       type: 'success',
-      title: 'You're on track with your budget',
-      description: 'You've spent 45% of your monthly budget and you're halfway through the month.'
+      title: 'You\'re on track with your budget',
+      description: 'You\'ve spent 45% of your monthly budget and you\'re halfway through the month.'
     },
     {
       id: 'insight-3',
