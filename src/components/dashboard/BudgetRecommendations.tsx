@@ -1,8 +1,9 @@
 
-import { ArrowTrendingDown, ArrowTrendingUp, Sparkles } from 'lucide-react';
+import { TrendingDown, TrendingUp, Sparkles } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { BudgetRecommendation, getCategoryInfo } from '@/utils/mockData';
+import { cn } from '@/lib/utils';
 
 interface BudgetRecommendationsProps {
   recommendations: BudgetRecommendation[];
@@ -37,9 +38,9 @@ const BudgetRecommendations = ({ recommendations }: BudgetRecommendationsProps) 
                   </div>
                   <div className="flex items-center gap-1">
                     {rec.percentChange > 0 ? (
-                      <ArrowTrendingUp className="h-4 w-4 text-destructive" />
+                      <TrendingUp className="h-4 w-4 text-destructive" />
                     ) : (
-                      <ArrowTrendingDown className="h-4 w-4 text-budget-green" />
+                      <TrendingDown className="h-4 w-4 text-budget-green" />
                     )}
                     <span className={`text-sm ${rec.percentChange > 0 ? 'text-destructive' : 'text-budget-green'}`}>
                       {Math.abs(rec.percentChange)}%
@@ -50,8 +51,11 @@ const BudgetRecommendations = ({ recommendations }: BudgetRecommendationsProps) 
                 <div className="space-y-1">
                   <Progress 
                     value={percentage > 100 ? 100 : percentage} 
-                    className="h-2" 
-                    indicatorClassName={isOverBudget ? 'bg-destructive' : color}
+                    className={cn("h-2", isOverBudget ? "bg-secondary" : "bg-secondary")}
+                    // Use the style attribute to override the indicator's style
+                    style={{ 
+                      "--progress-background": isOverBudget ? "hsl(var(--destructive))" : `var(--${color.replace('bg-', '')})`
+                    } as React.CSSProperties}
                   />
                   
                   <div className="flex items-center justify-between text-sm">
