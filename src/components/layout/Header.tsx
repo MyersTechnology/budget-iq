@@ -1,7 +1,7 @@
 
-import { Bell, Search, User } from "lucide-react";
+import { useState } from "react";
+import { Bell, Menu, User, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { 
   DropdownMenu,
@@ -11,49 +11,76 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
+import NavigationMenu from "./NavigationMenu";
 
 const Header = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  
   return (
-    <header className="h-16 w-full px-6 flex items-center justify-between border-b border-border bg-background/80 backdrop-blur-md sticky top-0 z-30">
-      <div className="flex items-center w-full max-w-md">
-        <div className="relative w-full">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-          <Input 
-            type="search"
-            placeholder="Search transactions..." 
-            className="pl-10 bg-secondary/50 border-0 h-9 focus-visible:ring-0 focus-visible:ring-offset-0"
-          />
-        </div>
-      </div>
+    <>
+      {/* Mobile overlay */}
+      {menuOpen && (
+        <div 
+          className="fixed inset-0 bg-background/80 backdrop-blur-sm z-40 md:hidden"
+          onClick={() => setMenuOpen(false)}
+        />
+      )}
       
-      <div className="flex items-center space-x-4">
-        <Button variant="outline" size="icon" className="rounded-full bg-secondary/50 border-0">
-          <Bell className="h-5 w-5 text-muted-foreground" />
-        </Button>
-        
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="rounded-full h-10 w-10 p-0">
-              <Avatar className="h-10 w-10 border border-border">
-                <AvatarImage src="/placeholder.svg" />
-                <AvatarFallback className="bg-primary/10 text-primary">
-                  <User className="h-5 w-5" />
-                </AvatarFallback>
-              </Avatar>
+      <header className="sticky top-0 z-30 w-full border-b border-border bg-card shadow-sm">
+        <div className="container mx-auto flex h-16 items-center justify-between px-4">
+          {/* Left section with hamburger and logo */}
+          <div className="flex items-center gap-4">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="md:hidden"
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label="Toggle menu"
+            >
+              <Menu className="h-5 w-5" />
             </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-56 mt-1 animate-fade-in">
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>Profile</DropdownMenuItem>
-            <DropdownMenuItem>Settings</DropdownMenuItem>
-            <DropdownMenuItem>Connected Accounts</DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>Log out</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      </div>
-    </header>
+            
+            <div className="text-xl font-bold">
+              <span>Smart</span>
+              <span className="text-budget-blue ml-1">Budget AI</span>
+            </div>
+          </div>
+          
+          {/* Right section with notifications and user profile */}
+          <div className="flex items-center gap-2">
+            <Button variant="ghost" size="icon" className="rounded-full relative">
+              <Bell className="h-5 w-5" />
+              <span className="absolute -top-0.5 -right-0.5 h-3 w-3 rounded-full bg-budget-red"></span>
+            </Button>
+            
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="rounded-full h-8 w-8 p-0 ml-2">
+                  <Avatar className="h-8 w-8 border border-border">
+                    <AvatarImage src="/placeholder.svg" />
+                    <AvatarFallback className="bg-primary/10 text-primary">
+                      <User className="h-4 w-4" />
+                    </AvatarFallback>
+                  </Avatar>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-56 animate-fade-in">
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>Profile</DropdownMenuItem>
+                <DropdownMenuItem>Settings</DropdownMenuItem>
+                <DropdownMenuItem>Connected Accounts</DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>Log out</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        </div>
+      </header>
+      
+      {/* Navigation Menu (mobile slide-out, desktop fixed sidebar) */}
+      <NavigationMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
+    </>
   );
 };
 

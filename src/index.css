@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
@@ -6,7 +7,7 @@
 
 @layer base {
   :root {
-    --background: 210 33% 97%;
+    --background: 210 33% 96%;
     --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
@@ -137,4 +138,13 @@
 .card-shadow {
   @apply shadow-md;
   box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+}
+
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }
