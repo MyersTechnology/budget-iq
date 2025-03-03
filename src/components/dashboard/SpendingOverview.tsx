@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { 
   Area, 
@@ -15,7 +14,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { CategorySpending } from '@/utils/mockData';
 import AnimatedNumber from '../ui/AnimatedNumber';
 
-// Mock data for the chart
 const generateChartData = (days: number = 30) => {
   const data = [];
   const now = new Date();
@@ -26,11 +24,9 @@ const generateChartData = (days: number = 30) => {
     const date = new Date(now);
     date.setDate(date.getDate() - i);
     
-    // Generate a somewhat realistic spending pattern
     const dayOfWeek = date.getDay();
     const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
     
-    // More spending on weekends, and random spikes
     const randomFactor = Math.random() * variance * (isWeekend ? 1.5 : 1);
     const amount = baseAmount + randomFactor;
     
@@ -53,7 +49,6 @@ const SpendingOverview = ({ categorySpending }: SpendingOverviewProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   
   useEffect(() => {
-    // Simulate loading data
     setIsLoading(true);
     setTimeout(() => {
       const days = selectedTab === 'week' ? 7 : selectedTab === 'month' ? 30 : 90;
@@ -62,14 +57,13 @@ const SpendingOverview = ({ categorySpending }: SpendingOverviewProps) => {
     }, 600);
   }, [selectedTab]);
   
-  // Calculate totals and changes
   const totalSpent = chartData.reduce((sum, item) => sum + item.spending, 0);
-  const previousTotal = totalSpent * 0.92; // Mock previous period for comparison
+  const previousTotal = totalSpent * 0.92;
   const percentChange = ((totalSpent - previousTotal) / previousTotal) * 100;
   const isIncrease = percentChange > 0;
   
   return (
-    <Card className="border border-border/50 shadow-sm">
+    <Card className="border border-border/50 card-shadow">
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between">
           <CardTitle className="text-xl font-semibold">Spending Overview</CardTitle>
@@ -84,7 +78,6 @@ const SpendingOverview = ({ categorySpending }: SpendingOverviewProps) => {
       </CardHeader>
       <CardContent>
         <div className="mt-2 space-y-8">
-          {/* Summary section */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <p className="text-sm font-medium text-muted-foreground mb-1">Total Spent</p>
@@ -124,7 +117,6 @@ const SpendingOverview = ({ categorySpending }: SpendingOverviewProps) => {
             </div>
           </div>
           
-          {/* Chart section */}
           <div className="h-[300px] w-full">
             {isLoading ? (
               <div className="h-full w-full flex items-center justify-center bg-secondary/30 rounded-lg animate-pulse" />

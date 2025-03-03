@@ -1,4 +1,3 @@
-
 import { TrendingDown, TrendingUp, Sparkles } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
@@ -11,7 +10,7 @@ interface BudgetRecommendationsProps {
 
 const BudgetRecommendations = ({ recommendations }: BudgetRecommendationsProps) => {
   return (
-    <Card className="border border-border/50 shadow-sm">
+    <Card className="border border-border/50 card-shadow">
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -52,7 +51,6 @@ const BudgetRecommendations = ({ recommendations }: BudgetRecommendationsProps) 
                   <Progress 
                     value={percentage > 100 ? 100 : percentage} 
                     className={cn("h-2", isOverBudget ? "bg-secondary" : "bg-secondary")}
-                    // Use the style attribute to override the indicator's style
                     style={{ 
                       "--progress-background": isOverBudget ? "hsl(var(--destructive))" : `var(--${color.replace('bg-', '')})`
                     } as React.CSSProperties}

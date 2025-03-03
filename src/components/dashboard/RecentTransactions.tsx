@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { ArrowRight, ChevronRight, Filter } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -27,16 +26,14 @@ const RecentTransactions = ({ transactions }: RecentTransactionsProps) => {
     );
   };
   
-  // Get unique categories from transactions
   const categories = Array.from(new Set(transactions.map(tx => tx.category)));
   
-  // Filter transactions based on selected categories
   const filteredTransactions = filter.length > 0
     ? transactions.filter(tx => filter.includes(tx.category))
     : transactions;
   
   return (
-    <Card className="border border-border/50 shadow-sm">
+    <Card className="border border-border/50 card-shadow">
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between">
           <CardTitle className="text-xl font-semibold">Recent Transactions</CardTitle>

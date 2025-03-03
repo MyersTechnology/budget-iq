@@ -49,7 +49,7 @@ const InsightCard = ({ insight, delay = 0 }: InsightCardProps) => {
   return (
     <Card 
       className={cn(
-        "overflow-hidden transition-all duration-500 ease-out border border-border/50 shadow-sm",
+        "overflow-hidden transition-all duration-500 ease-out border border-border/50 card-shadow",
         isVisible 
           ? "opacity-100 transform translate-y-0" 
           : "opacity-0 transform translate-y-8"
