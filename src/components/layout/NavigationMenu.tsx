@@ -107,19 +107,18 @@ const NavigationMenu = ({ isOpen, onClose }: NavigationMenuProps) => {
           <X className="h-5 w-5" />
         </Button>
         
-        <Button
-          variant="ghost"
-          size="icon"
-          className="hidden md:flex absolute right-4"
-          onClick={() => setCollapsed(!collapsed)}
-          aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-        >
-          {collapsed ? (
-            <ChevronRight className="h-5 w-5" />
-          ) : (
+        {/* Only show the expand/collapse button when NOT collapsed */}
+        {!collapsed && (
+          <Button
+            variant="ghost"
+            size="icon"
+            className="hidden md:flex absolute right-4"
+            onClick={() => setCollapsed(!collapsed)}
+            aria-label="Collapse sidebar"
+          >
             <ChevronLeft className="h-5 w-5" />
-          )}
-        </Button>
+          </Button>
+        )}
       </div>
       
       <nav className="flex-1 overflow-y-auto p-3 scrollbar-none">
@@ -160,6 +159,21 @@ const NavigationMenu = ({ isOpen, onClose }: NavigationMenuProps) => {
           {!collapsed && <span>Log out</span>}
         </button>
       </div>
+      
+      {/* Add expand button at the bottom when collapsed */}
+      {collapsed && (
+        <div className="border-t border-border p-3 flex justify-center">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:flex"
+            onClick={() => setCollapsed(false)}
+            aria-label="Expand sidebar"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </Button>
+        </div>
+      )}
     </aside>
   );
 };
