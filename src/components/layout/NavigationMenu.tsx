@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { 
   BarChart3, 
@@ -91,14 +92,19 @@ const NavigationMenu = ({ isOpen, onClose }: NavigationMenuProps) => {
         collapsed ? "md:w-20" : "w-64"
       )}
     >
-      <div className="flex h-16 items-center justify-between px-4 border-b border-border">
-        {!collapsed && (
+      <div className="flex h-16 items-center justify-between px-4 border-b border-border relative">
+        {/* Logo container with absolute positioning when not collapsed */}
+        <div className={cn(
+          "absolute left-4",
+          collapsed ? "hidden" : "block"
+        )}>
           <div className="text-xl font-bold">
             <span>Budget</span>
             <span className="text-budget-blue ml-1">IQ</span>
           </div>
-        )}
+        </div>
         
+        {/* Icon container with proper centering when collapsed */}
         {collapsed && (
           <div className="flex items-center justify-center w-full">
             <Sparkles className="h-6 w-6 text-budget-blue" />
@@ -117,7 +123,7 @@ const NavigationMenu = ({ isOpen, onClose }: NavigationMenuProps) => {
         <Button
           variant="ghost"
           size="icon"
-          className="hidden md:flex"
+          className={cn("hidden md:flex", collapsed ? "ml-auto" : "absolute right-4")}
           onClick={() => setCollapsed(!collapsed)}
           aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
         >
