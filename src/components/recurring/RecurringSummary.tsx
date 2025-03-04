@@ -105,7 +105,7 @@ const RecurringSummary = ({
               </div>
             )}
             
-            <div className="space-y-2 mt-2 max-h-[200px] overflow-y-auto">
+            <div className="space-y-2 mt-2">
               {categories.map((category) => (
                 <div key={category.category} className="flex items-center justify-between">
                   <div className="flex items-center">
