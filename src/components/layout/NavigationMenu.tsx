@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { 
   BarChart3, 
   CalendarClock,
+  ChevronLeft,
+  ChevronRight,
   CreditCard, 
   HelpCircle, 
   Home, 
@@ -17,6 +19,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useState, useEffect } from "react";
 
 interface NavigationMenuProps {
   isOpen: boolean;
@@ -72,18 +75,28 @@ const navItems = [
 ];
 
 const NavigationMenu = ({ isOpen, onClose }: NavigationMenuProps) => {
+  const [collapsed, setCollapsed] = useState(false);
+  
+  // Reset collapsed state when the mobile menu is opened/closed
+  useEffect(() => {
+    if (isOpen) {
+      setCollapsed(false);
+    }
+  }, [isOpen]);
+
   return (
     <aside 
       className={cn(
-        "fixed inset-y-0 left-0 z-50 flex h-full w-64 flex-col border-r border-border bg-card transition-transform duration-300 ease-in-out",
-        isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0 md:w-20 lg:w-64"
+        "fixed inset-y-0 left-0 z-50 flex h-full flex-col border-r border-border bg-card transition-transform duration-300 ease-in-out",
+        isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0",
+        collapsed ? "md:w-20" : "w-64"
       )}
     >
       {/* Header with Logo and close button */}
       <div className="flex h-16 items-center justify-between px-4 border-b border-border">
         <div className={cn(
           "text-xl font-bold",
-          !isOpen && "md:hidden lg:block"
+          collapsed && "hidden"
         )}>
           <span>Smart</span>
           <span className="text-budget-blue ml-1">Budget AI</span>
@@ -91,12 +104,13 @@ const NavigationMenu = ({ isOpen, onClose }: NavigationMenuProps) => {
         
         <div className={cn(
           "text-xl font-bold hidden",
-          !isOpen && "md:block lg:hidden"
+          collapsed && "block"
         )}>
           <span>SB</span>
           <span className="text-budget-blue">AI</span>
         </div>
         
+        {/* Mobile close button */}
         <Button 
           variant="ghost" 
           size="icon" 
@@ -104,6 +118,21 @@ const NavigationMenu = ({ isOpen, onClose }: NavigationMenuProps) => {
           onClick={onClose}
         >
           <X className="h-5 w-5" />
+        </Button>
+        
+        {/* Desktop collapse toggle */}
+        <Button
+          variant="ghost"
+          size="icon"
+          className="hidden md:flex"
+          onClick={() => setCollapsed(!collapsed)}
+          aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+        >
+          {collapsed ? (
+            <ChevronRight className="h-5 w-5" />
+          ) : (
+            <ChevronLeft className="h-5 w-5" />
+          )}
         </Button>
       </div>
       
@@ -117,16 +146,16 @@ const NavigationMenu = ({ isOpen, onClose }: NavigationMenuProps) => {
                 className={cn(
                   "flex items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-all hover:bg-muted",
                   location.pathname === item.href && "bg-primary/10 text-primary",
-                  !isOpen && "md:justify-center md:px-2 lg:justify-start lg:px-3"
+                  collapsed && "justify-center px-2"
                 )}
                 onClick={() => onClose()}
               >
                 <item.icon className={cn(
                   "h-5 w-5 shrink-0",
-                  !isOpen ? "md:mr-0 lg:mr-3" : "mr-3"
+                  collapsed ? "mr-0" : "mr-3"
                 )} />
                 <span className={cn(
-                  !isOpen && "md:hidden lg:inline"
+                  collapsed && "hidden"
                 )}>{item.label}</span>
               </Link>
             </li>
@@ -139,15 +168,15 @@ const NavigationMenu = ({ isOpen, onClose }: NavigationMenuProps) => {
         <button 
           className={cn(
             "flex w-full items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-all hover:bg-muted text-budget-red",
-            !isOpen && "md:justify-center md:px-2 lg:justify-start lg:px-3"
+            collapsed && "justify-center px-2"
           )}
         >
           <LogOut className={cn(
             "h-5 w-5 shrink-0",
-            !isOpen ? "md:mr-0 lg:mr-3" : "mr-3"
+            collapsed ? "mr-0" : "mr-3"
           )} />
           <span className={cn(
-            !isOpen && "md:hidden lg:inline"
+            collapsed && "hidden"
           )}>Log out</span>
         </button>
       </div>

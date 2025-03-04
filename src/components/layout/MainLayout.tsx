@@ -11,8 +11,8 @@ const MainLayout = ({ children }: MainLayoutProps) => {
     <div className="flex min-h-screen w-full flex-col bg-background">
       <Header />
       <div className="flex flex-1">
-        {/* Content area with padding for desktop sidebar */}
-        <main className="flex-1 md:pl-20 lg:pl-64">
+        {/* Content area with padding that adapts to sidebar state */}
+        <main className="flex-1 p-4 md:pl-24 lg:pl-[272px]">
           {children}
         </main>
       </div>
