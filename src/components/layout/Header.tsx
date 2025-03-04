@@ -27,9 +27,9 @@ const Header = () => {
       )}
       
       <header className="sticky top-0 z-30 w-full border-b border-border bg-card shadow-sm">
-        <div className="container mx-auto flex h-16 items-center justify-between px-4">
-          {/* Left section with hamburger and logo */}
-          <div className="flex items-center gap-4">
+        <div className="container mx-auto flex h-16 items-center px-4">
+          {/* Left section with hamburger */}
+          <div className="flex items-center">
             <Button
               variant="ghost"
               size="icon"
@@ -39,8 +39,12 @@ const Header = () => {
             >
               <Menu className="h-5 w-5" />
             </Button>
-            
-            <div className="text-xl font-bold">
+          </div>
+          
+          {/* Center section with app title */}
+          <div className="flex-1 flex justify-center">
+            <div className="text-xl font-bold flex items-center">
+              <Sparkles className="h-5 w-5 text-budget-blue mr-2" />
               <span>Budget</span>
               <span className="text-budget-blue ml-1">IQ</span>
             </div>
