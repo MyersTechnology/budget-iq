@@ -64,7 +64,7 @@ const CategoryBreakdown = ({ categorySpending, isLoading }: CategoryBreakdownPro
         <CardTitle>Category Breakdown</CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col h-[calc(100%-64px)]">
-        <div className="h-[45%] min-h-[200px]">
+        <div className="h-[180px] md:h-[45%] min-h-[180px]">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
@@ -73,7 +73,7 @@ const CategoryBreakdown = ({ categorySpending, isLoading }: CategoryBreakdownPro
                 cy="50%"
                 labelLine={false}
                 label={renderCustomizedLabel}
-                outerRadius={80}
+                outerRadius={70}
                 fill="#8884d8"
                 dataKey="value"
               >
@@ -88,22 +88,22 @@ const CategoryBreakdown = ({ categorySpending, isLoading }: CategoryBreakdownPro
           </ResponsiveContainer>
         </div>
         
-        <div className="mt-4 overflow-y-auto" style={{ maxHeight: "50%" }}>
+        <div className="mt-2 overflow-y-auto" style={{ maxHeight: "50%" }}>
           {data.map((category, index) => (
-            <div key={index} className="flex items-center justify-between mb-3">
+            <div key={index} className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
                 <div className={`h-3 w-3 rounded-full ${category.color}`} />
-                <span className="text-sm font-medium">{category.name}</span>
+                <span className="text-xs sm:text-sm font-medium">{category.name}</span>
               </div>
-              <div className="flex items-center gap-3">
-                <span className="text-sm font-medium">{formatCurrency(category.value)}</span>
+              <div className="flex items-center gap-2">
+                <span className="text-xs sm:text-sm font-medium">{formatCurrency(category.value)}</span>
                 <div className="flex items-center">
                   {category.trend === 'up' ? (
-                    <ArrowUpRight className="h-4 w-4 text-destructive" />
+                    <ArrowUpRight className="h-3 w-3 sm:h-4 sm:w-4 text-destructive" />
                   ) : category.trend === 'down' ? (
-                    <ArrowDownRight className="h-4 w-4 text-budget-green" />
+                    <ArrowDownRight className="h-3 w-3 sm:h-4 sm:w-4 text-budget-green" />
                   ) : (
-                    <Minus className="h-4 w-4 text-muted-foreground" />
+                    <Minus className="h-3 w-3 sm:h-4 sm:w-4 text-muted-foreground" />
                   )}
                 </div>
               </div>

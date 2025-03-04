@@ -5,7 +5,9 @@ import SpendingTrends from "@/components/trends/SpendingTrends";
 const TrendsPage = () => {
   return (
     <MainLayout>
-      <SpendingTrends />
+      <div className="w-full">
+        <SpendingTrends />
+      </div>
     </MainLayout>
   );
 };

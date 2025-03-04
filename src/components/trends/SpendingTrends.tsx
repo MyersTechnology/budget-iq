@@ -32,16 +32,16 @@ const SpendingTrends = () => {
     : trendsData;
 
   return (
-    <div className="container mx-auto space-y-6 py-6 pb-10 animate-fade-in">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-        <h1 className="text-2xl font-bold">Spending Trends & Insights</h1>
+    <div className="w-full max-w-full px-4 sm:container mx-auto space-y-4 sm:space-y-6 py-4 sm:py-6 pb-10 animate-fade-in overflow-x-hidden">
+      <div className="flex flex-col gap-3 mb-4 sm:mb-6">
+        <h1 className="text-xl sm:text-2xl font-bold">Spending Trends & Insights</h1>
         
         <Tabs 
           value={selectedTimeframe} 
           onValueChange={(value) => setSelectedTimeframe(value as any)} 
-          className="w-full md:w-auto"
+          className="w-full"
         >
-          <TabsList className="grid grid-cols-4 w-full md:w-[400px]">
+          <TabsList className="grid grid-cols-4 w-full">
             <TabsTrigger value="week">Week</TabsTrigger>
             <TabsTrigger value="month">Month</TabsTrigger>
             <TabsTrigger value="quarter">Quarter</TabsTrigger>
@@ -65,7 +65,7 @@ const SpendingTrends = () => {
       />
       
       {/* Main Charts */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
         <div className="lg:col-span-2">
           <TrendsChart 
             data={filteredData} 
