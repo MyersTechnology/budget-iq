@@ -21,6 +21,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface NavigationMenuProps {
   isOpen: boolean;
@@ -94,7 +95,10 @@ const NavigationMenu = ({ isOpen, onClose }: NavigationMenuProps) => {
     >
       <div className="flex h-16 items-center justify-between px-4 border-b border-border">
         {/* Icon container always shown */}
-        <div className="flex items-center justify-center w-full">
+        <div 
+          className="flex items-center justify-center w-full cursor-pointer"
+          onClick={() => collapsed && setCollapsed(false)}
+        >
           <Sparkles className="h-6 w-6 text-budget-blue" />
         </div>
         
@@ -125,39 +129,73 @@ const NavigationMenu = ({ isOpen, onClose }: NavigationMenuProps) => {
         <ul className="space-y-1">
           {navItems.map((item) => (
             <li key={item.href}>
-              <Link 
-                to={item.href}
-                className={cn(
-                  "flex items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-all hover:bg-muted",
-                  location.pathname === item.href && "bg-primary/10 text-primary",
-                  collapsed && "justify-center px-2"
-                )}
-                onClick={() => onClose()}
-              >
-                <item.icon className={cn(
-                  "h-5 w-5 shrink-0",
-                  collapsed ? "mr-0" : "mr-3"
-                )} />
-                {!collapsed && <span>{item.label}</span>}
-              </Link>
+              {collapsed ? (
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Link 
+                        to={item.href}
+                        className={cn(
+                          "flex items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-all hover:bg-muted",
+                          location.pathname === item.href && "bg-primary/10 text-primary",
+                          collapsed && "justify-center px-2"
+                        )}
+                        onClick={() => onClose()}
+                      >
+                        <item.icon className="h-5 w-5 shrink-0" />
+                      </Link>
+                    </TooltipTrigger>
+                    <TooltipContent side="right" sideOffset={10}>
+                      <p>{item.label}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              ) : (
+                <Link 
+                  to={item.href}
+                  className={cn(
+                    "flex items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-all hover:bg-muted",
+                    location.pathname === item.href && "bg-primary/10 text-primary"
+                  )}
+                  onClick={() => onClose()}
+                >
+                  <item.icon className="h-5 w-5 shrink-0 mr-3" />
+                  <span>{item.label}</span>
+                </Link>
+              )}
             </li>
           ))}
         </ul>
       </nav>
       
       <div className="border-t border-border p-3">
-        <button 
-          className={cn(
-            "flex w-full items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-all hover:bg-muted text-budget-red",
-            collapsed && "justify-center px-2"
-          )}
-        >
-          <LogOut className={cn(
-            "h-5 w-5 shrink-0",
-            collapsed ? "mr-0" : "mr-3"
-          )} />
-          {!collapsed && <span>Log out</span>}
-        </button>
+        {collapsed ? (
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <button 
+                  className={cn(
+                    "flex w-full items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-all hover:bg-muted text-budget-red justify-center px-2"
+                  )}
+                >
+                  <LogOut className="h-5 w-5 shrink-0" />
+                </button>
+              </TooltipTrigger>
+              <TooltipContent side="right" sideOffset={10}>
+                <p>Log out</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        ) : (
+          <button 
+            className={cn(
+              "flex w-full items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-all hover:bg-muted text-budget-red"
+            )}
+          >
+            <LogOut className="h-5 w-5 shrink-0 mr-3" />
+            <span>Log out</span>
+          </button>
+        )}
       </div>
       
       {/* Add expand button at the bottom when collapsed */}
