@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { 
   Area, 
@@ -35,10 +34,8 @@ const TrendsChart = ({ data, timeframe, isLoading }: TrendsChartProps) => {
     timeframe === 'month' ? 'Monthly Spending Trends' : 
     timeframe === 'quarter' ? 'Quarterly Spending Trends' : 'Yearly Spending Trends';
   
-  // Extract top 5 categories for the chart
   const topCategories = data?.categorySpending?.slice(0, 5).map((cat: any) => cat.category) || [];
   
-  // Create colors array for the stacked charts
   const categoryColors = topCategories.map((category: string) => {
     const { color } = getCategoryInfo(category);
     return color.replace('bg-', '');
@@ -100,10 +97,8 @@ const TrendsChart = ({ data, timeframe, isLoading }: TrendsChartProps) => {
               strokeWidth={2}
             />
             
-            {/* Add lines for top categories if available */}
             {topCategories.map((category: string, index: number) => {
               const { color } = getCategoryInfo(category);
-              // Convert Tailwind class to CSS variable for Recharts
               const strokeColor = `hsl(var(--${color.replace('bg-', '')}))`;
               
               return (
@@ -189,7 +184,7 @@ const TrendsChart = ({ data, timeframe, isLoading }: TrendsChartProps) => {
   };
   
   return (
-    <Card className="border border-border/50 card-shadow">
+    <Card className="border border-border/50 card-shadow h-full">
       <CardHeader className="flex flex-row items-center justify-between pb-2">
         <CardTitle>{chartTitle}</CardTitle>
         <DropdownMenu>

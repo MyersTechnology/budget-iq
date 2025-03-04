@@ -18,7 +18,7 @@ interface CategoryBreakdownProps {
 const CategoryBreakdown = ({ categorySpending, isLoading }: CategoryBreakdownProps) => {
   if (isLoading) {
     return (
-      <Card className="border border-border/50 card-shadow">
+      <Card className="border border-border/50 card-shadow h-full">
         <CardHeader>
           <CardTitle>Category Breakdown</CardTitle>
         </CardHeader>
@@ -60,7 +60,7 @@ const CategoryBreakdown = ({ categorySpending, isLoading }: CategoryBreakdownPro
   };
   
   return (
-    <Card className="border border-border/50 card-shadow">
+    <Card className="border border-border/50 card-shadow h-full">
       <CardHeader>
         <CardTitle>Category Breakdown</CardTitle>
       </CardHeader>
@@ -85,20 +85,19 @@ const CategoryBreakdown = ({ categorySpending, isLoading }: CategoryBreakdownPro
                   />
                 ))}
               </Pie>
-              <Legend />
             </PieChart>
           </ResponsiveContainer>
         </div>
         
-        <div className="mt-4 space-y-3">
-          {data.slice(0, 5).map((category, index) => (
+        <div className="mt-6 space-y-3">
+          {data.map((category, index) => (
             <div key={index} className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <div className={`h-3 w-3 rounded-full ${category.color}`} />
                 <span className="text-sm font-medium">{category.name}</span>
               </div>
               <div className="flex items-center gap-3">
-                <span className="text-sm">{formatCurrency(category.value)}</span>
+                <span className="text-sm font-medium">{formatCurrency(category.value)}</span>
                 <div className="flex items-center">
                   {category.trend === 'up' ? (
                     <ArrowUpRight className="h-4 w-4 text-destructive" />
