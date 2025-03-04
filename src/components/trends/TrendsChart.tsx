@@ -26,7 +26,7 @@ const TrendsChart = ({ data, timeframe, isLoading }: TrendsChartProps) => {
   const renderChart = () => {
     if (isLoading) {
       return (
-        <div className="h-[400px] w-full flex items-center justify-center bg-secondary/30 rounded-lg animate-pulse" />
+        <div className="h-[300px] sm:h-[400px] w-full flex items-center justify-center bg-secondary/30 rounded-lg animate-pulse" />
       );
     }
     
@@ -42,11 +42,11 @@ const TrendsChart = ({ data, timeframe, isLoading }: TrendsChartProps) => {
   return (
     <Card className="border border-border/50 card-shadow h-full">
       <CardHeader className="flex flex-row items-center justify-between pb-2">
-        <CardTitle>{chartTitle}</CardTitle>
+        <CardTitle className="text-base sm:text-lg">{chartTitle}</CardTitle>
         <ChartTypeSelector chartType={chartType} setChartType={setChartType} />
       </CardHeader>
       <CardContent>
-        <div className="h-[400px] w-full">
+        <div className="h-[300px] sm:h-[400px] w-full">
           {renderChart()}
         </div>
       </CardContent>

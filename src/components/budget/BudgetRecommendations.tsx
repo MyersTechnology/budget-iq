@@ -33,7 +33,7 @@ const BudgetRecommendations = () => {
   
   if (isLoading || !budgetData) {
     return (
-      <div className="container mx-auto py-6 animate-fade-in">
+      <div className="py-6 animate-fade-in overflow-hidden">
         <h1 className="text-2xl font-bold mb-6">Budget Recommendations</h1>
         <div className="grid gap-6">
           {[1, 2, 3].map((i) => (
@@ -49,11 +49,11 @@ const BudgetRecommendations = () => {
   }
   
   return (
-    <div className="container mx-auto space-y-6 py-6 pb-10 animate-fade-in">
+    <div className="space-y-6 py-6 pb-10 animate-fade-in overflow-hidden">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <h1 className="text-2xl font-bold">Budget Recommendations</h1>
         
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <Tabs defaultValue="monthly" className="w-[280px]">
             <TabsList>
               <TabsTrigger value="monthly" onClick={() => setActiveView('monthly')}>
@@ -116,7 +116,7 @@ const BudgetRecommendations = () => {
         <div className="md:col-span-2">
           <Card className="border border-border/50 card-shadow">
             <CardHeader className="pb-2">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div className="flex items-center gap-2">
                   <CardTitle className="text-xl font-semibold">AI Budget Recommendations</CardTitle>
                   <div className="flex items-center justify-center rounded-full bg-budget-purple/10 p-1.5">

@@ -17,8 +17,8 @@ interface AreaChartComponentProps {
 
 const AreaChartComponent = ({ chartData }: AreaChartComponentProps) => {
   return (
-    <ResponsiveContainer width="100%" height={400}>
-      <AreaChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
+    <ResponsiveContainer width="100%" height="100%">
+      <AreaChart data={chartData} margin={{ top: 20, right: 5, left: 0, bottom: 20 }}>
         <defs>
           <linearGradient id="colorSpending" x1="0" y1="0" x2="0" y2="1">
             <stop offset="5%" stopColor="hsl(var(--budget-blue))" stopOpacity={0.8} />
@@ -28,13 +28,13 @@ const AreaChartComponent = ({ chartData }: AreaChartComponentProps) => {
         <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="hsl(var(--border))" />
         <XAxis 
           dataKey="date"
-          tick={{ fontSize: 12 }}
+          tick={{ fontSize: 10 }}
           tickMargin={10}
           stroke="hsl(var(--muted-foreground))"
         />
         <YAxis 
           tickFormatter={(value) => `$${value}`}
-          tick={{ fontSize: 12 }}
+          tick={{ fontSize: 10 }}
           tickMargin={10}
           stroke="hsl(var(--muted-foreground))"
         />

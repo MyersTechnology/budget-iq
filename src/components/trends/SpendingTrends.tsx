@@ -32,7 +32,7 @@ const SpendingTrends = () => {
     : trendsData;
 
   return (
-    <div className="w-full max-w-full px-4 sm:container mx-auto space-y-4 sm:space-y-6 py-4 sm:py-6 pb-10 animate-fade-in overflow-x-hidden">
+    <div className="w-full max-w-full mx-auto space-y-4 sm:space-y-6 py-4 sm:py-6 pb-10 animate-fade-in overflow-hidden">
       <div className="flex flex-col gap-3 mb-4 sm:mb-6">
         <h1 className="text-xl sm:text-2xl font-bold">Spending Trends & Insights</h1>
         

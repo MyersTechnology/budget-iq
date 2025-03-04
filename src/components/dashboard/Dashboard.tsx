@@ -22,7 +22,7 @@ const Dashboard = () => {
   }, []);
   
   return (
-    <div className="container mx-auto space-y-6 py-6 pb-10 animate-fade-in">
+    <div className="space-y-6 py-6 pb-10 animate-fade-in overflow-hidden">
       <h1 className="text-2xl font-bold mb-6">Financial Dashboard</h1>
       
       {/* Summary Cards */}

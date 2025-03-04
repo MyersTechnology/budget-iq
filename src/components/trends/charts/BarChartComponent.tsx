@@ -17,18 +17,18 @@ interface BarChartComponentProps {
 
 const BarChartComponent = ({ chartData }: BarChartComponentProps) => {
   return (
-    <ResponsiveContainer width="100%" height={400}>
-      <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
+    <ResponsiveContainer width="100%" height="100%">
+      <BarChart data={chartData} margin={{ top: 20, right: 5, left: 0, bottom: 20 }}>
         <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="hsl(var(--border))" />
         <XAxis 
           dataKey="date"
-          tick={{ fontSize: 12 }}
+          tick={{ fontSize: 10 }}
           tickMargin={10}
           stroke="hsl(var(--muted-foreground))"
         />
         <YAxis 
           tickFormatter={(value) => `$${value}`}
-          tick={{ fontSize: 12 }}
+          tick={{ fontSize: 10 }}
           tickMargin={10}
           stroke="hsl(var(--muted-foreground))"
         />
