@@ -3,8 +3,7 @@ import {
   PieChart, 
   Pie, 
   Cell, 
-  ResponsiveContainer, 
-  Legend
+  ResponsiveContainer
 } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CategorySpending, formatCurrency } from '@/utils/mockData';
@@ -64,8 +63,8 @@ const CategoryBreakdown = ({ categorySpending, isLoading }: CategoryBreakdownPro
       <CardHeader>
         <CardTitle>Category Breakdown</CardTitle>
       </CardHeader>
-      <CardContent>
-        <div className="h-[300px]">
+      <CardContent className="flex flex-col h-[calc(100%-64px)]">
+        <div className="flex-grow" style={{ minHeight: '240px' }}>
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
@@ -74,7 +73,7 @@ const CategoryBreakdown = ({ categorySpending, isLoading }: CategoryBreakdownPro
                 cy="50%"
                 labelLine={false}
                 label={renderCustomizedLabel}
-                outerRadius={80}
+                outerRadius={120}
                 fill="#8884d8"
                 dataKey="value"
               >
@@ -89,7 +88,7 @@ const CategoryBreakdown = ({ categorySpending, isLoading }: CategoryBreakdownPro
           </ResponsiveContainer>
         </div>
         
-        <div className="mt-6 space-y-3">
+        <div className="mt-4 space-y-3">
           {data.map((category, index) => (
             <div key={index} className="flex items-center justify-between">
               <div className="flex items-center gap-2">
