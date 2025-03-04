@@ -34,12 +34,12 @@ const navItems = [
   },
   { 
     icon: BarChart3, 
-    label: "Spending Trends & Insights", 
+    label: "Trends & AI Insights", 
     href: "/trends",
   },
   { 
     icon: PiggyBank, 
-    label: "Budget Recommendations", 
+    label: "AI Budget", 
     href: "/budget",
   },
   { 

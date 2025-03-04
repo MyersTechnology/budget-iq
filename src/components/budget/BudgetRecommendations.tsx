@@ -34,7 +34,7 @@ const BudgetRecommendations = () => {
   if (isLoading || !budgetData) {
     return (
       <div className="py-6 animate-fade-in overflow-hidden">
-        <h1 className="text-2xl font-bold mb-6">Budget Recommendations</h1>
+        <h1 className="text-2xl font-bold mb-6">AI Budget</h1>
         <div className="grid gap-6">
           {[1, 2, 3].map((i) => (
             <Card key={i} className="border border-border/50 shadow-sm overflow-hidden">
@@ -51,7 +51,7 @@ const BudgetRecommendations = () => {
   return (
     <div className="space-y-6 py-6 pb-10 animate-fade-in overflow-hidden">
       <div className="flex flex-col gap-3 mb-4 sm:flex-row sm:items-center sm:justify-between">
-        <h1 className="text-2xl font-bold">Budget Recommendations</h1>
+        <h1 className="text-2xl font-bold">AI Budget</h1>
         
         <div className="flex flex-wrap items-center gap-2">
           <Tabs defaultValue="monthly" className="w-full sm:w-[280px]">
