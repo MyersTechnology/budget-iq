@@ -48,13 +48,13 @@ const AccountInsights = ({
   }
   
   return (
-    <>
+    <div className="overflow-hidden h-full">
       <AccountOverview 
         selectedAccount={selectedAccount} 
         filteredTransactions={filteredTransactions} 
       />
       
-      <Tabs defaultValue="transactions">
+      <Tabs defaultValue="transactions" className="mt-6">
         <TabsList className="grid w-full grid-cols-2 mb-4">
           <TabsTrigger value="transactions">Transactions</TabsTrigger>
           <TabsTrigger value="insights">
@@ -67,19 +67,21 @@ const AccountInsights = ({
           </TabsTrigger>
         </TabsList>
         
-        <TabsContent value="transactions">
-          <TransactionsTab 
-            transactions={transactions}
-            selectedAccountId={selectedAccountId}
-            currency={selectedAccount?.currency || 'USD'}
-          />
-        </TabsContent>
-        
-        <TabsContent value="insights">
-          <InsightsTab accountInsights={accountInsights} />
-        </TabsContent>
+        <div className="overflow-hidden">
+          <TabsContent value="transactions" className="mt-0 overflow-auto max-h-[calc(100vh-360px)]">
+            <TransactionsTab 
+              transactions={filteredTransactions}
+              selectedAccountId={selectedAccountId}
+              currency={selectedAccount?.currency || 'USD'}
+            />
+          </TabsContent>
+          
+          <TabsContent value="insights" className="mt-0 overflow-auto max-h-[calc(100vh-360px)]">
+            <InsightsTab accountInsights={accountInsights} />
+          </TabsContent>
+        </div>
       </Tabs>
-    </>
+    </div>
   );
 };
 

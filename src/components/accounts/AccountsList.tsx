@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { 
   CreditCard, 
@@ -92,7 +91,7 @@ const AccountsList = ({
         </div>
       </CardHeader>
       <CardContent>
-        <div className="space-y-1">
+        <div className="space-y-1 max-h-[calc(100vh-240px)] overflow-y-auto pr-1 scrollbar-none">
           {accounts.map((account) => (
             <div
               key={account.id}
@@ -104,8 +103,8 @@ const AccountsList = ({
               )}
               onClick={() => onSelectAccount(account.id)}
             >
-              <div className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-full bg-white border border-border/50 flex items-center justify-center overflow-hidden">
+              <div className="flex items-center gap-3 min-w-0">
+                <div className="h-10 w-10 rounded-full bg-white border border-border/50 flex items-center justify-center overflow-hidden flex-shrink-0">
                   {account.institutionLogo ? (
                     <img 
                       src={account.institutionLogo} 
@@ -120,15 +119,15 @@ const AccountsList = ({
                   )}
                 </div>
                 
-                <div>
-                  <h3 className="font-medium text-sm">{account.name}</h3>
-                  <p className="text-xs text-muted-foreground">
+                <div className="min-w-0 overflow-hidden">
+                  <h3 className="font-medium text-sm truncate">{account.name}</h3>
+                  <p className="text-xs text-muted-foreground truncate">
                     {account.institutionName} • {account.accountNumber}
                   </p>
                 </div>
               </div>
               
-              <div className="flex items-center">
+              <div className="flex items-center flex-shrink-0">
                 {disconnectConfirmId === account.id ? (
                   <div className="flex items-center gap-1">
                     <Button 
@@ -151,7 +150,7 @@ const AccountsList = ({
                 ) : (
                   <>
                     <p className={cn(
-                      "text-sm font-semibold mr-3",
+                      "text-sm font-semibold mr-3 whitespace-nowrap",
                       account.balance < 0 ? "text-destructive" : "text-foreground"
                     )}>
                       {account.balance.toLocaleString('en-US', {

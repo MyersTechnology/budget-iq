@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import MainLayout from '@/components/layout/MainLayout';
 import ConnectedAccountsHeader from '@/components/accounts/ConnectedAccountsHeader';
@@ -7,7 +6,6 @@ import AccountInsights from '@/components/accounts/AccountInsights';
 import AddAccountSection from '@/components/accounts/AddAccountSection';
 import ManualTransactionForm from '@/components/accounts/ManualTransactionForm';
 import { useToast } from "@/components/ui/use-toast";
-// Updated import path to use the index file directly
 import { mockLinkedAccounts, mockTransactions } from '@/utils/mockData/index';
 import { Account, Transaction } from '@/types/accounts';
 
@@ -20,15 +18,12 @@ const ConnectedAccountsPage = () => {
   const { toast } = useToast();
 
   useEffect(() => {
-    // Simulate API fetch
     const loadData = async () => {
-      // In a real implementation, this would be an API call to fetch accounts
       setTimeout(() => {
         setAccounts(mockLinkedAccounts);
         setTransactions(mockTransactions);
         setIsLoading(false);
         
-        // Select the first account by default if available
         if (mockLinkedAccounts.length > 0) {
           setSelectedAccountId(mockLinkedAccounts[0].id);
         }
@@ -43,7 +38,6 @@ const ConnectedAccountsPage = () => {
   };
 
   const handleAddAccount = () => {
-    // In a real implementation, this would open the Plaid Link dialog
     toast({
       title: "Connecting to Plaid",
       description: "This would open the Plaid integration in a real implementation.",
@@ -88,44 +82,48 @@ const ConnectedAccountsPage = () => {
 
   return (
     <MainLayout>
-      <div className="space-y-6 py-6 pb-10 animate-fade-in">
+      <div className="space-y-6 py-6 pb-10 animate-fade-in max-h-screen overflow-hidden">
         <ConnectedAccountsHeader 
           totalAccounts={accounts.length}
           onAddManualTransaction={() => setIsAddingManualTransaction(true)}
         />
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="md:col-span-1">
-            <AccountsList 
-              accounts={accounts}
-              selectedAccountId={selectedAccountId}
-              isLoading={isLoading}
-              onSelectAccount={handleAccountSelect}
-              onDisconnectAccount={handleDisconnectAccount}
-              onSyncAccount={handleSyncAccount}
-            />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 h-[calc(100vh-170px)] overflow-hidden">
+          <div className="md:col-span-1 flex flex-col overflow-hidden">
+            <div className="flex-grow overflow-hidden">
+              <AccountsList 
+                accounts={accounts}
+                selectedAccountId={selectedAccountId}
+                isLoading={isLoading}
+                onSelectAccount={handleAccountSelect}
+                onDisconnectAccount={handleDisconnectAccount}
+                onSyncAccount={handleSyncAccount}
+              />
+            </div>
             
             <div className="mt-6">
               <AddAccountSection onAddAccount={handleAddAccount} />
             </div>
           </div>
           
-          <div className="md:col-span-2 space-y-6">
+          <div className="md:col-span-2 overflow-hidden">
             {isAddingManualTransaction ? (
-              <ManualTransactionForm
-                accounts={accounts}
-                onAdd={handleAddManualTransaction}
-                onCancel={() => setIsAddingManualTransaction(false)}
-              />
+              <div className="p-4 bg-card rounded-lg border border-border/50 card-shadow overflow-auto max-h-[calc(100vh-170px)]">
+                <ManualTransactionForm
+                  accounts={accounts}
+                  onAdd={handleAddManualTransaction}
+                  onCancel={() => setIsAddingManualTransaction(false)}
+                />
+              </div>
             ) : (
-              <>
+              <div className="p-4 bg-card rounded-lg border border-border/50 card-shadow overflow-hidden max-h-[calc(100vh-170px)]">
                 <AccountInsights 
                   accounts={accounts}
                   selectedAccountId={selectedAccountId}
                   transactions={transactions}
                   isLoading={isLoading}
                 />
-              </>
+              </div>
             )}
           </div>
         </div>
