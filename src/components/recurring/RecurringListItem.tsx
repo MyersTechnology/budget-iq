@@ -1,6 +1,7 @@
 
 import { RecurringItem, RecurringCategory } from '@/types/recurring';
 import { formatCurrency } from '@/utils/transactions';
+import { getCategoryColor, getAvailableCategories } from '@/utils/recurring/recurringHelpers';
 import { 
   AlertCircle, 
   Check, 
