@@ -8,6 +8,7 @@ import RecurringList from '@/components/recurring/RecurringList';
 import RecurringInsights from '@/components/recurring/RecurringInsights';
 import RecurringCalendar from '@/components/recurring/RecurringCalendar';
 import { useRecurringData } from '@/hooks/useRecurringData';
+import { RecurringCategory } from '@/types/recurring';
 
 const RecurringExpensesPage = () => {
   const { 
@@ -36,7 +37,8 @@ const RecurringExpensesPage = () => {
   };
 
   const handleUpdateCategory = (itemId: string, category: string) => {
-    updateItemCategory(itemId, category);
+    // Cast the string to RecurringCategory type
+    updateItemCategory(itemId, category as RecurringCategory);
     toast({
       title: "Category updated",
       description: "The subscription category has been updated."

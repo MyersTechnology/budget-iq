@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { 
   Card, 
@@ -55,7 +54,6 @@ const RecurringList = ({
   const [searchQuery, setSearchQuery] = useState('');
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
   
-  // Filter items based on search and category
   const filteredItems = items.filter(item => {
     const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
                         item.description?.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -66,7 +64,6 @@ const RecurringList = ({
     return matchesSearch && matchesCategory;
   });
   
-  // Sort by next payment date
   const sortedItems = [...filteredItems].sort((a, b) => {
     return new Date(a.nextPaymentDate).getTime() - new Date(b.nextPaymentDate).getTime();
   });
@@ -321,7 +318,6 @@ const RecurringList = ({
   );
 };
 
-// Helper functions
 const getCategoryColor = (category: RecurringCategory): string => {
   const colors: Record<RecurringCategory, string> = {
     streaming: 'bg-budget-purple',
@@ -341,17 +337,17 @@ const getCategoryColor = (category: RecurringCategory): string => {
 };
 
 const getAvailableCategories = () => [
-  { value: 'streaming', label: 'Streaming' },
-  { value: 'utilities', label: 'Utilities' },
-  { value: 'insurance', label: 'Insurance' },
-  { value: 'loans', label: 'Loans' },
-  { value: 'memberships', label: 'Memberships' },
-  { value: 'software', label: 'Software' },
-  { value: 'education', label: 'Education' },
-  { value: 'entertainment', label: 'Entertainment' },
-  { value: 'food_delivery', label: 'Food Delivery' },
-  { value: 'health', label: 'Health' },
-  { value: 'other', label: 'Other' }
+  { value: 'streaming' as RecurringCategory, label: 'Streaming' },
+  { value: 'utilities' as RecurringCategory, label: 'Utilities' },
+  { value: 'insurance' as RecurringCategory, label: 'Insurance' },
+  { value: 'loans' as RecurringCategory, label: 'Loans' },
+  { value: 'memberships' as RecurringCategory, label: 'Memberships' },
+  { value: 'software' as RecurringCategory, label: 'Software' },
+  { value: 'education' as RecurringCategory, label: 'Education' },
+  { value: 'entertainment' as RecurringCategory, label: 'Entertainment' },
+  { value: 'food_delivery' as RecurringCategory, label: 'Food Delivery' },
+  { value: 'health' as RecurringCategory, label: 'Health' },
+  { value: 'other' as RecurringCategory, label: 'Other' }
 ];
 
 const capitalize = (str: string): string => {
