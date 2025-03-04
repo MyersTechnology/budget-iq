@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import { 
   Area, 
@@ -65,9 +66,9 @@ const SpendingOverview = ({ categorySpending }: SpendingOverviewProps) => {
   return (
     <Card className="border border-border/50 card-shadow">
       <CardHeader className="pb-2">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <CardTitle className="text-xl font-semibold">Spending Overview</CardTitle>
-          <Tabs defaultValue="month" className="w-[240px]" onValueChange={setSelectedTab}>
+          <Tabs defaultValue="month" className="w-full sm:w-[240px]" onValueChange={setSelectedTab}>
             <TabsList className="grid grid-cols-3">
               <TabsTrigger value="week">Week</TabsTrigger>
               <TabsTrigger value="month">Month</TabsTrigger>

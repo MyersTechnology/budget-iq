@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { ArrowRight, ChevronRight, Filter } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -35,7 +36,7 @@ const RecentTransactions = ({ transactions }: RecentTransactionsProps) => {
   return (
     <Card className="border border-border/50 card-shadow">
       <CardHeader className="pb-2">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <CardTitle className="text-xl font-semibold">Recent Transactions</CardTitle>
           
           <div className="flex items-center gap-2">

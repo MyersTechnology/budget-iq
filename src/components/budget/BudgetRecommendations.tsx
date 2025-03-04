@@ -50,11 +50,11 @@ const BudgetRecommendations = () => {
   
   return (
     <div className="space-y-6 py-6 pb-10 animate-fade-in overflow-hidden">
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div className="flex flex-col gap-3 mb-4 sm:flex-row sm:items-center sm:justify-between">
         <h1 className="text-2xl font-bold">Budget Recommendations</h1>
         
         <div className="flex flex-wrap items-center gap-2">
-          <Tabs defaultValue="monthly" className="w-[280px]">
+          <Tabs defaultValue="monthly" className="w-full sm:w-[280px]">
             <TabsList>
               <TabsTrigger value="monthly" onClick={() => setActiveView('monthly')}>
                 Monthly
@@ -116,7 +116,7 @@ const BudgetRecommendations = () => {
         <div className="md:col-span-2">
           <Card className="border border-border/50 card-shadow">
             <CardHeader className="pb-2">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div className="flex items-center gap-2">
                   <CardTitle className="text-xl font-semibold">AI Budget Recommendations</CardTitle>
                   <div className="flex items-center justify-center rounded-full bg-budget-purple/10 p-1.5">
