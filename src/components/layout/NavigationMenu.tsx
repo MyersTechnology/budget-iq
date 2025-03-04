@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { 
   BarChart3, 
@@ -78,7 +77,6 @@ const navItems = [
 const NavigationMenu = ({ isOpen, onClose }: NavigationMenuProps) => {
   const [collapsed, setCollapsed] = useState(false);
   
-  // Reset collapsed state when the mobile menu is opened/closed
   useEffect(() => {
     if (isOpen) {
       setCollapsed(false);
@@ -93,26 +91,20 @@ const NavigationMenu = ({ isOpen, onClose }: NavigationMenuProps) => {
         collapsed ? "md:w-20" : "w-64"
       )}
     >
-      {/* Header with Logo and close button */}
       <div className="flex h-16 items-center justify-between px-4 border-b border-border">
-        {/* Logo - only shown when menu is expanded */}
-        <div className={cn(
-          "text-xl font-bold",
-          collapsed && "hidden"
-        )}>
-          <span>Budget</span>
-          <span className="text-budget-blue ml-1">IQ</span>
-        </div>
+        {!collapsed && (
+          <div className="text-xl font-bold">
+            <span>Budget</span>
+            <span className="text-budget-blue ml-1">IQ</span>
+          </div>
+        )}
         
-        {/* Icon - only shown when menu is collapsed */}
-        <div className={cn(
-          "flex items-center justify-center w-full",
-          !collapsed && "hidden"
-        )}>
-          <Sparkles className="h-6 w-6 text-budget-blue" />
-        </div>
+        {collapsed && (
+          <div className="flex items-center justify-center w-full">
+            <Sparkles className="h-6 w-6 text-budget-blue" />
+          </div>
+        )}
         
-        {/* Mobile close button */}
         <Button 
           variant="ghost" 
           size="icon" 
@@ -122,7 +114,6 @@ const NavigationMenu = ({ isOpen, onClose }: NavigationMenuProps) => {
           <X className="h-5 w-5" />
         </Button>
         
-        {/* Desktop collapse toggle */}
         <Button
           variant="ghost"
           size="icon"
@@ -138,7 +129,6 @@ const NavigationMenu = ({ isOpen, onClose }: NavigationMenuProps) => {
         </Button>
       </div>
       
-      {/* Navigation */}
       <nav className="flex-1 overflow-y-auto p-3 scrollbar-none">
         <ul className="space-y-1">
           {navItems.map((item) => (
@@ -156,16 +146,13 @@ const NavigationMenu = ({ isOpen, onClose }: NavigationMenuProps) => {
                   "h-5 w-5 shrink-0",
                   collapsed ? "mr-0" : "mr-3"
                 )} />
-                <span className={cn(
-                  collapsed && "hidden"
-                )}>{item.label}</span>
+                {!collapsed && <span>{item.label}</span>}
               </Link>
             </li>
           ))}
         </ul>
       </nav>
       
-      {/* Footer */}
       <div className="border-t border-border p-3">
         <button 
           className={cn(
@@ -177,9 +164,7 @@ const NavigationMenu = ({ isOpen, onClose }: NavigationMenuProps) => {
             "h-5 w-5 shrink-0",
             collapsed ? "mr-0" : "mr-3"
           )} />
-          <span className={cn(
-            collapsed && "hidden"
-          )}>Log out</span>
+          {!collapsed && <span>Log out</span>}
         </button>
       </div>
     </aside>
