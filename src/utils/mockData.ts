@@ -33,7 +33,7 @@ export interface Insight {
 // Re-export Transaction type for backward compatibility
 export type { Transaction } from './transactions';
 
-// Mock data for our application
+// Export mock data
 export const mockData = {
   // User financial overview
   totalBalance: 8750,

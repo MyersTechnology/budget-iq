@@ -2,9 +2,9 @@
 import { useState } from 'react';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Account, Transaction } from '@/types/accounts';
-import { mockAccountInsights } from '@/utils/mockData';
+import { mockAccountInsights } from '@/utils/mockData/index';
 
-// Import our new component files
+// Import our component files
 import AccountOverview from './insights/AccountOverview';
 import TransactionsTab from './insights/TransactionsTab';
 import InsightsTab from './insights/InsightsTab';
