@@ -104,7 +104,8 @@ export const mockTransactions: Transaction[] = [
     currency: 'USD',
     category: 'Entertainment',
     pending: false,
-    aiCategorized: true
+    aiCategorized: true,
+    isRecurring: true
   },
   {
     id: 'trx4',

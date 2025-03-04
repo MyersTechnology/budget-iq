@@ -60,15 +60,15 @@ export const mockData = {
     { category: 'Subscriptions', recommendedBudget: 120, currentSpending: 150, percentChange: 25 },
   ],
   
-  // Recent transactions
+  // Recent transactions - updated to ensure all transactions have the currency property
   transactions: [
-    { id: 't1', date: '2023-05-01', amount: 42.50, description: 'Whole Foods Market', category: 'Groceries', isRecurring: false, aiCategorized: true },
-    { id: 't2', date: '2023-05-01', amount: 9.99, description: 'Netflix Subscription', category: 'Subscriptions', isRecurring: true, pending: false },
-    { id: 't3', date: '2023-04-30', amount: 35.00, description: 'Local Restaurant', category: 'Dining', isRecurring: false, pending: false },
-    { id: 't4', date: '2023-04-29', amount: 65.20, description: 'Gas Station', category: 'Transportation', isRecurring: false, pending: true },
-    { id: 't5', date: '2023-04-28', amount: 1400.00, description: 'Rent Payment', category: 'Housing', isRecurring: true, pending: false },
-    { id: 't6', date: '2023-04-27', amount: 15.49, description: 'Spotify Premium', category: 'Subscriptions', isRecurring: true, pending: false },
-    { id: 't7', date: '2023-04-26', amount: 55.30, description: 'Grocery Store', category: 'Groceries', isRecurring: false, pending: false },
+    { id: 't1', date: '2023-05-01', amount: 42.50, description: 'Whole Foods Market', category: 'Groceries', isRecurring: false, aiCategorized: true, currency: 'USD', pending: false },
+    { id: 't2', date: '2023-05-01', amount: 9.99, description: 'Netflix Subscription', category: 'Subscriptions', isRecurring: true, pending: false, currency: 'USD' },
+    { id: 't3', date: '2023-04-30', amount: 35.00, description: 'Local Restaurant', category: 'Dining', isRecurring: false, pending: false, currency: 'USD' },
+    { id: 't4', date: '2023-04-29', amount: 65.20, description: 'Gas Station', category: 'Transportation', isRecurring: false, pending: true, currency: 'USD' },
+    { id: 't5', date: '2023-04-28', amount: 1400.00, description: 'Rent Payment', category: 'Housing', isRecurring: true, pending: false, currency: 'USD' },
+    { id: 't6', date: '2023-04-27', amount: 15.49, description: 'Spotify Premium', category: 'Subscriptions', isRecurring: true, pending: false, currency: 'USD' },
+    { id: 't7', date: '2023-04-26', amount: 55.30, description: 'Grocery Store', category: 'Groceries', isRecurring: false, pending: false, currency: 'USD' },
   ],
   
   // AI insights
