@@ -13,6 +13,7 @@ import {
   PiggyBank,
   Settings, 
   Shield,
+  Sparkles,
   Target,
   UserPlus,
   X 
@@ -98,16 +99,15 @@ const NavigationMenu = ({ isOpen, onClose }: NavigationMenuProps) => {
           "text-xl font-bold",
           collapsed && "hidden"
         )}>
-          <span>Smart</span>
-          <span className="text-budget-blue ml-1">Budget AI</span>
+          <span>Budge</span>
+          <span className="text-budget-blue ml-1">IQ</span>
         </div>
         
         <div className={cn(
-          "text-xl font-bold hidden",
-          collapsed && "block"
+          "flex items-center justify-center",
+          !collapsed && "hidden"
         )}>
-          <span>SB</span>
-          <span className="text-budget-blue">AI</span>
+          <Sparkles className="h-6 w-6 text-budget-blue" />
         </div>
         
         {/* Mobile close button */}

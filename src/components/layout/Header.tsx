@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Bell, Menu, User, X } from "lucide-react";
+import { Bell, Menu, Sparkles, User, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { 
@@ -41,8 +41,8 @@ const Header = () => {
             </Button>
             
             <div className="text-xl font-bold">
-              <span>Smart</span>
-              <span className="text-budget-blue ml-1">Budget AI</span>
+              <span>Budge</span>
+              <span className="text-budget-blue ml-1">IQ</span>
             </div>
           </div>
           
