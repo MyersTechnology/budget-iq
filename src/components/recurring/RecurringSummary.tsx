@@ -45,7 +45,7 @@ const RecurringSummary = ({
   };
   
   return (
-    <Card className="border border-border/50 card-shadow">
+    <Card className="border border-border/50 card-shadow h-full">
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between">
           <CardTitle className="text-lg">Subscription Breakdown</CardTitle>
@@ -55,9 +55,9 @@ const RecurringSummary = ({
         </div>
       </CardHeader>
       
-      <CardContent>
+      <CardContent className="flex flex-col h-[calc(100%-60px)]">
         {isLoading ? (
-          <div className="space-y-4">
+          <div className="space-y-4 flex-1">
             <Skeleton className="h-[180px] w-full rounded-md" />
             <div className="space-y-2">
               <Skeleton className="h-4 w-[250px]" />
@@ -66,7 +66,7 @@ const RecurringSummary = ({
             </div>
           </div>
         ) : (
-          <div className="space-y-4">
+          <div className="space-y-4 flex-1 flex flex-col">
             <div className="text-center mb-2">
               <div className="text-3xl font-bold">
                 {formatCurrency(monthlyTotal)}<span className="text-sm font-normal text-muted-foreground">/mo</span>
@@ -105,7 +105,7 @@ const RecurringSummary = ({
               </div>
             )}
             
-            <div className="space-y-2 mt-2">
+            <div className="space-y-2 mt-2 flex-grow overflow-auto">
               {categories.map((category) => (
                 <div key={category.category} className="flex items-center justify-between">
                   <div className="flex items-center">
@@ -119,7 +119,7 @@ const RecurringSummary = ({
               ))}
             </div>
             
-            <div className="pt-2 border-t border-border mt-4">
+            <div className="pt-2 border-t border-border mt-auto">
               <div className="flex items-center justify-between text-sm">
                 <div className="flex items-center gap-1.5">
                   <CreditCard className="h-4 w-4 text-muted-foreground" />

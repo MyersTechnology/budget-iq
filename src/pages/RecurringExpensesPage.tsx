@@ -5,7 +5,6 @@ import { useToast } from "@/components/ui/use-toast";
 import RecurringHeader from '@/components/recurring/RecurringHeader';
 import RecurringSummary from '@/components/recurring/RecurringSummary';
 import RecurringList from '@/components/recurring/RecurringList';
-import RecurringInsights from '@/components/recurring/RecurringInsights';
 import RecurringCalendar from '@/components/recurring/RecurringCalendar';
 import { useRecurringData } from '@/hooks/useRecurringData';
 import { RecurringCategory } from '@/types/recurring';
@@ -84,18 +83,12 @@ const RecurringExpensesPage = () => {
             </div>
           </div>
           
-          <div className="space-y-6">
+          <div>
             <RecurringSummary 
               monthlyTotal={monthlyTotal}
               yearlyTotal={yearlyTotal}
               budgetPercentage={budgetPercentage}
               categories={categories}
-              isLoading={isLoading}
-            />
-            
-            <RecurringInsights 
-              insights={insights}
-              onDismiss={handleDismissInsight}
               isLoading={isLoading}
             />
           </div>
