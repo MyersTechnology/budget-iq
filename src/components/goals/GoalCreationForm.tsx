@@ -74,11 +74,18 @@ export const GoalCreationForm = ({ onSubmit, onCancel }: GoalCreationFormProps) 
   const handleSubmit = (values: FormValues) => {
     // Transform to FinancialGoal type
     const newGoal: Omit<FinancialGoal, 'id'> = {
-      ...values,
+      name: values.name,
+      category: values.category,
+      targetAmount: values.targetAmount,
       currentAmount: 0,
       createdAt: new Date().toISOString(),
       targetDate: values.targetDate || null,
+      priority: values.priority,
       status: 'active',
+      contributionFrequency: values.contributionFrequency,
+      contributionAmount: values.contributionAmount,
+      autoAdjust: values.autoAdjust,
+      notes: values.notes,
     };
     
     onSubmit(newGoal);
