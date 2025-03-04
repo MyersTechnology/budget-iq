@@ -130,7 +130,7 @@ const NavigationMenu = ({ isOpen, onClose }: NavigationMenuProps) => {
           {navItems.map((item) => (
             <li key={item.href}>
               {collapsed ? (
-                <TooltipProvider>
+                <TooltipProvider delayDuration={200}>
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <Link 
@@ -170,7 +170,7 @@ const NavigationMenu = ({ isOpen, onClose }: NavigationMenuProps) => {
       
       <div className="border-t border-border p-3">
         {collapsed ? (
-          <TooltipProvider>
+          <TooltipProvider delayDuration={200}>
             <Tooltip>
               <TooltipTrigger asChild>
                 <button 
