@@ -6,11 +6,16 @@ import {
   TooltipProvider,
   TooltipTrigger
 } from "@/components/ui/tooltip";
-import { Transaction, getCategoryInfo } from '@/utils/mockData';
+import { getCategoryInfo } from '@/utils/mockData';
 import { cn } from '@/lib/utils';
+import { Transaction as AccountsTransaction } from '@/types/accounts';
+import { Transaction as MockDataTransaction } from '@/utils/mockData';
+
+// Create a union type that works with both transaction types
+type TransactionType = AccountsTransaction | MockDataTransaction;
 
 interface TransactionItemProps {
-  transaction: Transaction;
+  transaction: TransactionType;
 }
 
 const TransactionItem = ({ transaction }: TransactionItemProps) => {

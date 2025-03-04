@@ -26,6 +26,7 @@ export interface Transaction {
   currency: string;
   category: string;
   pending: boolean;
+  isRecurring?: boolean;  // Added this property to match mockData.Transaction
   aiCategorized?: boolean;
   notes?: string;
 }
