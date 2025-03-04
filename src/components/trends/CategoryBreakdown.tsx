@@ -64,7 +64,7 @@ const CategoryBreakdown = ({ categorySpending, isLoading }: CategoryBreakdownPro
         <CardTitle>Category Breakdown</CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col h-[calc(100%-64px)]">
-        <div className="flex-grow" style={{ minHeight: '240px' }}>
+        <div className="h-[45%] min-h-[200px]">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
@@ -73,7 +73,7 @@ const CategoryBreakdown = ({ categorySpending, isLoading }: CategoryBreakdownPro
                 cy="50%"
                 labelLine={false}
                 label={renderCustomizedLabel}
-                outerRadius={120}
+                outerRadius={80}
                 fill="#8884d8"
                 dataKey="value"
               >
@@ -88,9 +88,9 @@ const CategoryBreakdown = ({ categorySpending, isLoading }: CategoryBreakdownPro
           </ResponsiveContainer>
         </div>
         
-        <div className="mt-4 space-y-3">
+        <div className="mt-4 overflow-y-auto" style={{ maxHeight: "50%" }}>
           {data.map((category, index) => (
-            <div key={index} className="flex items-center justify-between">
+            <div key={index} className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
                 <div className={`h-3 w-3 rounded-full ${category.color}`} />
                 <span className="text-sm font-medium">{category.name}</span>
