@@ -1,5 +1,5 @@
 
-import { Transaction } from '@/types/accounts';
+import { Transaction } from '@/utils/transactions';
 import TransactionItem from '@/components/transactions/TransactionItem';
 import { Card, CardContent } from '@/components/ui/card';
 

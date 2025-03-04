@@ -16,20 +16,9 @@ export interface Account {
   accountNumber: string; // Masked, e.g. "••••1234"
 }
 
-export interface Transaction {
-  id: string;
-  accountId: string;
-  date: string;
-  description: string;
-  merchant?: string;
-  amount: number;
-  currency: string;
-  category: string;
-  pending: boolean;
-  isRecurring?: boolean;  // Added this property to match mockData.Transaction
-  aiCategorized?: boolean;
-  notes?: string;
-}
+// Using the consolidated Transaction type from utils/transactions.ts
+// This is a re-export to maintain backward compatibility
+export type { Transaction } from '../utils/transactions';
 
 export interface AccountInsight {
   id: string;

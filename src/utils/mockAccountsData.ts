@@ -1,5 +1,6 @@
 
-import { Account, Transaction, AccountInsight } from '@/types/accounts';
+import { Account, AccountInsight } from '@/types/accounts';
+import { Transaction } from './transactions';
 
 export const mockLinkedAccounts: Account[] = [
   {

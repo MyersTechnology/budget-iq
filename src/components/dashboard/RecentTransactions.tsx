@@ -9,7 +9,7 @@ import {
   DropdownMenuCheckboxItem,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
-import { Transaction, getCategoryInfo } from '@/utils/mockData';
+import { Transaction, getCategoryInfo } from '@/utils/transactions';
 import TransactionItem from '../transactions/TransactionItem';
 
 interface RecentTransactionsProps {
