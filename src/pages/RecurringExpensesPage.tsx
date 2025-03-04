@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import MainLayout from '@/components/layout/MainLayout';
 import { useToast } from "@/components/ui/use-toast";
 import RecurringHeader from '@/components/recurring/RecurringHeader';
@@ -54,7 +54,7 @@ const RecurringExpensesPage = () => {
 
   return (
     <MainLayout>
-      <div className="space-y-6 py-6 animate-fade-in max-h-screen overflow-auto">
+      <div className="space-y-6 py-6 animate-fade-in">
         <RecurringHeader 
           monthlyTotal={monthlyTotal} 
           yearlyTotal={yearlyTotal}
