@@ -95,16 +95,18 @@ const NavigationMenu = ({ isOpen, onClose }: NavigationMenuProps) => {
     >
       {/* Header with Logo and close button */}
       <div className="flex h-16 items-center justify-between px-4 border-b border-border">
+        {/* Logo - only shown when menu is expanded */}
         <div className={cn(
           "text-xl font-bold",
           collapsed && "hidden"
         )}>
-          <span>Budge</span>
+          <span>Budget</span>
           <span className="text-budget-blue ml-1">IQ</span>
         </div>
         
+        {/* Icon - only shown when menu is collapsed */}
         <div className={cn(
-          "flex items-center justify-center",
+          "flex items-center justify-center w-full",
           !collapsed && "hidden"
         )}>
           <Sparkles className="h-6 w-6 text-budget-blue" />

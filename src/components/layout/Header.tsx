@@ -41,7 +41,7 @@ const Header = () => {
             </Button>
             
             <div className="text-xl font-bold">
-              <span>Budge</span>
+              <span>Budget</span>
               <span className="text-budget-blue ml-1">IQ</span>
             </div>
           </div>
