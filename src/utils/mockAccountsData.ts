@@ -8,4 +8,4 @@ export {
   mockLinkedAccounts,
   mockTransactions,
   mockAccountInsights
-} from './mockData';
+} from './mockData/index';
