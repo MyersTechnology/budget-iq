@@ -7,7 +7,8 @@ import AccountInsights from '@/components/accounts/AccountInsights';
 import AddAccountSection from '@/components/accounts/AddAccountSection';
 import ManualTransactionForm from '@/components/accounts/ManualTransactionForm';
 import { useToast } from "@/components/ui/use-toast";
-import { mockLinkedAccounts, mockTransactions } from '@/utils/mockAccountsData';
+// Updated import path - using the index.ts re-export
+import { mockLinkedAccounts, mockTransactions } from '@/utils/mockData';
 import { Account, Transaction } from '@/types/accounts';
 
 const ConnectedAccountsPage = () => {
