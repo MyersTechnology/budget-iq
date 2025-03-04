@@ -1,0 +1,370 @@
+
+import { RecurringItem, RecurringInsight, RecurringCategory } from '@/types/recurring';
+
+// Helper function to add days to a date
+const addDays = (date: Date, days: number): Date => {
+  const result = new Date(date);
+  result.setDate(result.getDate() + days);
+  return result;
+};
+
+// Helper function to subtract days from a date
+const subtractDays = (date: Date, days: number): Date => {
+  const result = new Date(date);
+  result.setDate(result.getDate() - days);
+  return result;
+};
+
+// Get date strings for recurring items
+const now = new Date();
+const nextMonth = new Date(now);
+nextMonth.setMonth(now.getMonth() + 1);
+
+export const mockRecurringItems: RecurringItem[] = [
+  {
+    id: 'rec1',
+    name: 'Netflix',
+    description: 'Standard streaming plan',
+    amount: 15.99,
+    currency: 'USD',
+    category: 'streaming',
+    frequency: 'monthly',
+    nextPaymentDate: addDays(now, 7).toISOString(),
+    lastPaymentDate: subtractDays(now, 23).toISOString(),
+    isTracked: true,
+    isAutoDetected: true,
+    provider: 'Netflix, Inc.',
+    cancellationUrl: 'https://netflix.com/cancel',
+    paymentMethod: 'Visa ending in 4242',
+    tags: ['entertainment', 'streaming'],
+    usageLevel: 'high'
+  },
+  {
+    id: 'rec2',
+    name: 'Spotify',
+    description: 'Premium music subscription',
+    amount: 9.99,
+    currency: 'USD',
+    category: 'streaming',
+    frequency: 'monthly',
+    nextPaymentDate: addDays(now, 12).toISOString(),
+    lastPaymentDate: subtractDays(now, 18).toISOString(),
+    isTracked: true,
+    isAutoDetected: true,
+    provider: 'Spotify USA Inc.',
+    cancellationUrl: 'https://spotify.com/account',
+    paymentMethod: 'Visa ending in 4242',
+    tags: ['music', 'streaming'],
+    usageLevel: 'high'
+  },
+  {
+    id: 'rec3',
+    name: 'Gym Membership',
+    description: 'Gold\'s Gym monthly membership',
+    amount: 39.99,
+    currency: 'USD',
+    category: 'memberships',
+    frequency: 'monthly',
+    nextPaymentDate: addDays(now, 3).toISOString(),
+    lastPaymentDate: subtractDays(now, 27).toISOString(),
+    isTracked: true,
+    isAutoDetected: true,
+    provider: 'Gold\'s Gym',
+    cancellationUrl: 'https://goldsgym.com/account',
+    paymentMethod: 'Visa ending in 4242',
+    tags: ['fitness', 'health'],
+    usageLevel: 'low'
+  },
+  {
+    id: 'rec4',
+    name: 'Hulu',
+    description: 'Ad-supported plan',
+    amount: 7.99,
+    currency: 'USD',
+    category: 'streaming',
+    frequency: 'monthly',
+    nextPaymentDate: addDays(now, 15).toISOString(),
+    lastPaymentDate: subtractDays(now, 15).toISOString(),
+    isTracked: true,
+    isAutoDetected: true,
+    provider: 'Hulu LLC',
+    cancellationUrl: 'https://hulu.com/account',
+    paymentMethod: 'Visa ending in 4242',
+    tags: ['entertainment', 'streaming'],
+    usageLevel: 'medium',
+    hasDuplicate: true
+  },
+  {
+    id: 'rec5',
+    name: 'Disney+',
+    description: 'Monthly streaming subscription',
+    amount: 7.99,
+    currency: 'USD',
+    category: 'streaming',
+    frequency: 'monthly',
+    nextPaymentDate: addDays(now, 9).toISOString(),
+    lastPaymentDate: subtractDays(now, 21).toISOString(),
+    isTracked: true,
+    isAutoDetected: true,
+    provider: 'Disney',
+    cancellationUrl: 'https://disneyplus.com/account',
+    paymentMethod: 'Visa ending in 4242',
+    tags: ['entertainment', 'streaming'],
+    usageLevel: 'low',
+    hasDuplicate: true
+  },
+  {
+    id: 'rec6',
+    name: 'Internet Service',
+    description: 'Xfinity high-speed internet',
+    amount: 79.99,
+    currency: 'USD',
+    category: 'utilities',
+    frequency: 'monthly',
+    nextPaymentDate: addDays(now, 18).toISOString(),
+    lastPaymentDate: subtractDays(now, 12).toISOString(),
+    isTracked: true,
+    isAutoDetected: true,
+    provider: 'Comcast',
+    paymentMethod: 'Visa ending in 4242',
+    tags: ['utilities', 'internet']
+  },
+  {
+    id: 'rec7',
+    name: 'Phone Bill',
+    description: 'Verizon wireless service',
+    amount: 85.00,
+    currency: 'USD',
+    category: 'utilities',
+    frequency: 'monthly',
+    nextPaymentDate: addDays(now, 5).toISOString(),
+    lastPaymentDate: subtractDays(now, 25).toISOString(),
+    isTracked: true,
+    isAutoDetected: true,
+    provider: 'Verizon Wireless',
+    paymentMethod: 'Visa ending in 4242',
+    tags: ['utilities', 'phone']
+  },
+  {
+    id: 'rec8',
+    name: 'Car Insurance',
+    description: 'GEICO auto insurance',
+    amount: 112.50,
+    currency: 'USD',
+    category: 'insurance',
+    frequency: 'monthly',
+    nextPaymentDate: addDays(now, 14).toISOString(),
+    lastPaymentDate: subtractDays(now, 16).toISOString(),
+    isTracked: true,
+    isAutoDetected: true,
+    provider: 'GEICO',
+    paymentMethod: 'Visa ending in 4242',
+    tags: ['car', 'insurance']
+  },
+  {
+    id: 'rec9',
+    name: 'Fitness App',
+    description: 'Fitness tracker subscription',
+    amount: 9.99,
+    currency: 'USD',
+    category: 'health',
+    frequency: 'monthly',
+    nextPaymentDate: addDays(now, 22).toISOString(),
+    lastPaymentDate: subtractDays(now, 8).toISOString(),
+    isTracked: true,
+    isAutoDetected: true,
+    provider: 'MyFitnessPal',
+    cancellationUrl: 'https://myfitnesspal.com/account',
+    paymentMethod: 'Visa ending in 4242',
+    tags: ['fitness', 'health', 'apps'],
+    usageLevel: 'unused'
+  },
+  {
+    id: 'rec10',
+    name: 'Student Loan',
+    description: 'Federal student loan payment',
+    amount: 320.00,
+    currency: 'USD',
+    category: 'loans',
+    frequency: 'monthly',
+    nextPaymentDate: addDays(now, 10).toISOString(),
+    lastPaymentDate: subtractDays(now, 20).toISOString(),
+    isTracked: true,
+    isAutoDetected: true,
+    provider: 'Great Lakes',
+    paymentMethod: 'Bank Account ending in 6789',
+    tags: ['loan', 'education']
+  },
+  {
+    id: 'rec11',
+    name: 'Amazon Prime',
+    description: 'Annual membership',
+    amount: 139.00,
+    currency: 'USD',
+    category: 'memberships',
+    frequency: 'yearly',
+    nextPaymentDate: addDays(now, 95).toISOString(),
+    lastPaymentDate: subtractDays(now, 270).toISOString(),
+    isTracked: true,
+    isAutoDetected: true,
+    provider: 'Amazon.com',
+    cancellationUrl: 'https://amazon.com/prime',
+    paymentMethod: 'Visa ending in 4242',
+    tags: ['shopping', 'streaming'],
+    usageLevel: 'high'
+  },
+  {
+    id: 'rec12',
+    name: 'Cloud Storage',
+    description: 'Google One storage plan',
+    amount: 1.99,
+    currency: 'USD',
+    category: 'software',
+    frequency: 'monthly',
+    nextPaymentDate: addDays(now, 25).toISOString(),
+    lastPaymentDate: subtractDays(now, 5).toISOString(),
+    isTracked: true,
+    isAutoDetected: true,
+    provider: 'Google LLC',
+    cancellationUrl: 'https://one.google.com',
+    paymentMethod: 'Visa ending in 4242',
+    tags: ['cloud', 'storage'],
+    priceIncreased: true
+  },
+  {
+    id: 'rec13',
+    name: 'News Subscription',
+    description: 'New York Times digital access',
+    amount: 17.00,
+    currency: 'USD',
+    category: 'memberships',
+    frequency: 'monthly',
+    nextPaymentDate: addDays(now, 19).toISOString(),
+    lastPaymentDate: subtractDays(now, 11).toISOString(),
+    isTracked: true,
+    isAutoDetected: true,
+    provider: 'The New York Times',
+    cancellationUrl: 'https://nytimes.com/account',
+    paymentMethod: 'Visa ending in 4242',
+    tags: ['news', 'reading'],
+    usageLevel: 'medium'
+  },
+  {
+    id: 'rec14',
+    name: 'HelloFresh',
+    description: 'Meal delivery service',
+    amount: 69.96,
+    currency: 'USD',
+    category: 'food_delivery',
+    frequency: 'weekly',
+    nextPaymentDate: addDays(now, 2).toISOString(),
+    lastPaymentDate: subtractDays(now, 5).toISOString(),
+    isTracked: true,
+    isAutoDetected: true,
+    provider: 'HelloFresh',
+    cancellationUrl: 'https://hellofresh.com/account',
+    paymentMethod: 'Visa ending in 4242',
+    tags: ['food', 'meal-kit'],
+    isNewlyDetected: true
+  },
+  {
+    id: 'rec15',
+    name: 'Apple TV+',
+    description: 'Streaming service',
+    amount: 6.99,
+    currency: 'USD',
+    category: 'streaming',
+    frequency: 'monthly',
+    nextPaymentDate: addDays(now, 8).toISOString(),
+    lastPaymentDate: subtractDays(now, 22).toISOString(),
+    isTracked: true,
+    isAutoDetected: true,
+    provider: 'Apple Inc.',
+    cancellationUrl: 'https://apple.com/account',
+    paymentMethod: 'Visa ending in 4242',
+    tags: ['entertainment', 'streaming'],
+    usageLevel: 'low',
+    hasDuplicate: true
+  },
+  {
+    id: 'rec16',
+    name: 'Local Gym',
+    description: 'Planet Fitness membership',
+    amount: 10.00,
+    currency: 'USD',
+    category: 'memberships',
+    frequency: 'monthly',
+    nextPaymentDate: addDays(now, 16).toISOString(),
+    lastPaymentDate: subtractDays(now, 14).toISOString(),
+    isTracked: true,
+    isAutoDetected: true,
+    provider: 'Planet Fitness',
+    cancellationUrl: 'https://planetfitness.com/account',
+    paymentMethod: 'Bank Account ending in 6789',
+    tags: ['fitness', 'health'],
+    usageLevel: 'unused',
+    hasDuplicate: true
+  }
+];
+
+export const mockRecurringInsights: RecurringInsight[] = [
+  {
+    id: 'insight1',
+    type: 'price_increase',
+    title: 'Price increase detected',
+    description: 'Your Google One subscription increased from $1.59 to $1.99 per month.',
+    itemIds: ['rec12'],
+    severity: 'low',
+    action: 'Review Plan'
+  },
+  {
+    id: 'insight2',
+    type: 'unused',
+    title: 'Unused subscription',
+    description: 'You haven\'t used MyFitnessPal in over 3 months. Consider canceling to save $9.99/month.',
+    itemIds: ['rec9'],
+    severity: 'medium',
+    action: 'Cancel Subscription',
+    actionUrl: 'https://myfitnesspal.com/account',
+    potentialSavings: 119.88
+  },
+  {
+    id: 'insight3',
+    type: 'duplicate',
+    title: 'Duplicate streaming services',
+    description: 'You\'re subscribed to 5 streaming services. Consider consolidating to save money.',
+    itemIds: ['rec1', 'rec4', 'rec5', 'rec15'],
+    severity: 'high',
+    action: 'View Recommendations',
+    potentialSavings: 287.76
+  },
+  {
+    id: 'insight4',
+    type: 'duplicate',
+    title: 'Multiple gym memberships',
+    description: 'You\'re paying for both Gold\'s Gym ($39.99) and Planet Fitness ($10.00) memberships.',
+    itemIds: ['rec3', 'rec16'],
+    severity: 'high',
+    action: 'Compare Memberships',
+    potentialSavings: 479.88
+  },
+  {
+    id: 'insight5',
+    type: 'savings',
+    title: 'Potential annual savings',
+    description: 'Switching to annual billing for your Spotify subscription would save you $20 per year.',
+    itemIds: ['rec2'],
+    severity: 'low',
+    action: 'Switch to Annual',
+    potentialSavings: 20.00
+  },
+  {
+    id: 'insight6',
+    type: 'alert',
+    title: 'New recurring payment detected',
+    description: 'We detected a new weekly payment to HelloFresh for $69.96 starting on May 15, 2023.',
+    itemIds: ['rec14'],
+    severity: 'medium',
+    action: 'Confirm Subscription'
+  }
+];
