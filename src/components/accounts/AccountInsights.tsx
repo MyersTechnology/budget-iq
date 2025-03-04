@@ -48,13 +48,13 @@ const AccountInsights = ({
   }
   
   return (
-    <div className="overflow-hidden h-full">
+    <div className="flex flex-col h-full">
       <AccountOverview 
         selectedAccount={selectedAccount} 
         filteredTransactions={filteredTransactions} 
       />
       
-      <Tabs defaultValue="transactions" className="mt-6">
+      <Tabs defaultValue="transactions" className="mt-6 flex-grow flex flex-col">
         <TabsList className="grid w-full grid-cols-2 mb-4">
           <TabsTrigger value="transactions">Transactions</TabsTrigger>
           <TabsTrigger value="insights">
@@ -67,8 +67,8 @@ const AccountInsights = ({
           </TabsTrigger>
         </TabsList>
         
-        <div className="overflow-hidden">
-          <TabsContent value="transactions" className="mt-0 overflow-auto max-h-[calc(100vh-360px)]">
+        <div className="flex-grow overflow-hidden">
+          <TabsContent value="transactions" className="mt-0 overflow-auto h-full max-h-[calc(100vh-400px)]">
             <TransactionsTab 
               transactions={filteredTransactions}
               selectedAccountId={selectedAccountId}
@@ -76,7 +76,7 @@ const AccountInsights = ({
             />
           </TabsContent>
           
-          <TabsContent value="insights" className="mt-0 overflow-auto max-h-[calc(100vh-360px)]">
+          <TabsContent value="insights" className="mt-0 overflow-auto h-full max-h-[calc(100vh-400px)]">
             <InsightsTab accountInsights={accountInsights} />
           </TabsContent>
         </div>

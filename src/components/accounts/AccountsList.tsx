@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { 
   CreditCard, 
@@ -81,7 +82,7 @@ const AccountsList = ({
   }
   
   return (
-    <Card className="border border-border/50 card-shadow">
+    <Card className="border border-border/50 card-shadow h-full flex flex-col">
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between">
           <CardTitle className="text-base font-semibold">Your Accounts</CardTitle>
@@ -90,8 +91,8 @@ const AccountsList = ({
           </div>
         </div>
       </CardHeader>
-      <CardContent>
-        <div className="space-y-1 max-h-[calc(100vh-240px)] overflow-y-auto pr-1 scrollbar-none">
+      <CardContent className="flex-grow overflow-hidden">
+        <div className="space-y-1 overflow-y-auto pr-1 scrollbar-none h-full max-h-[calc(100vh-240px)]">
           {accounts.map((account) => (
             <div
               key={account.id}

@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import MainLayout from '@/components/layout/MainLayout';
 import ConnectedAccountsHeader from '@/components/accounts/ConnectedAccountsHeader';
@@ -82,15 +83,15 @@ const ConnectedAccountsPage = () => {
 
   return (
     <MainLayout>
-      <div className="space-y-6 py-6 pb-10 animate-fade-in max-h-screen overflow-hidden">
+      <div className="space-y-6 py-6 pb-10 animate-fade-in max-h-screen overflow-auto">
         <ConnectedAccountsHeader 
           totalAccounts={accounts.length}
           onAddManualTransaction={() => setIsAddingManualTransaction(true)}
         />
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 h-[calc(100vh-170px)] overflow-hidden">
-          <div className="md:col-span-1 flex flex-col overflow-hidden">
-            <div className="flex-grow overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 min-h-[500px]">
+          <div className="md:col-span-1 flex flex-col h-full">
+            <div className="flex-grow overflow-hidden mb-6">
               <AccountsList 
                 accounts={accounts}
                 selectedAccountId={selectedAccountId}
@@ -101,12 +102,12 @@ const ConnectedAccountsPage = () => {
               />
             </div>
             
-            <div className="mt-6">
+            <div>
               <AddAccountSection onAddAccount={handleAddAccount} />
             </div>
           </div>
           
-          <div className="md:col-span-2 overflow-hidden">
+          <div className="md:col-span-2 h-full">
             {isAddingManualTransaction ? (
               <div className="p-4 bg-card rounded-lg border border-border/50 card-shadow overflow-auto max-h-[calc(100vh-170px)]">
                 <ManualTransactionForm
@@ -116,7 +117,7 @@ const ConnectedAccountsPage = () => {
                 />
               </div>
             ) : (
-              <div className="p-4 bg-card rounded-lg border border-border/50 card-shadow overflow-hidden max-h-[calc(100vh-170px)]">
+              <div className="p-4 bg-card rounded-lg border border-border/50 card-shadow overflow-hidden h-full">
                 <AccountInsights 
                   accounts={accounts}
                   selectedAccountId={selectedAccountId}
