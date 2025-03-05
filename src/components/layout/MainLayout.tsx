@@ -1,5 +1,5 @@
 
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import Header from "./Header";
 
 interface MainLayoutProps {
@@ -12,7 +12,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
       <Header />
       <div className="flex flex-1">
         {/* Content area with padding that adapts to sidebar state */}
-        <main className="flex-1 p-2 md:p-4 md:pl-24 lg:pl-[272px] overflow-x-hidden">
+        <main className="flex-1 p-2 md:p-4 md:pl-24 lg:pl-[272px] max-w-7xl mx-auto overflow-x-hidden">
           {children}
         </main>
       </div>
