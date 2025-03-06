@@ -159,3 +159,14 @@ html[data-font-size="medium"] {
 html[data-font-size="large"] {
   font-size: 18px;
 }
+
+@media (max-width: 768px) {
+  html[data-font-size="large"] {
+    font-size: 17px;
+  }
+}
+
+.font-size-responsive {
+  max-width: 100%;
+  overflow-x: hidden;
+}

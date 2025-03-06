@@ -19,7 +19,7 @@ const SettingsLayout = ({ children, className }: SettingsLayoutProps) => {
   }, [settings.darkMode, settings.highContrast, settings.fontSize]);
   
   return (
-    <div className={cn("space-y-8", className)}>
+    <div className={cn("space-y-8 font-size-responsive", className)}>
       {children}
     </div>
   );

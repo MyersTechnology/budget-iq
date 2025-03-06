@@ -63,22 +63,22 @@ export const useSettings = () => {
     });
   };
   
-  // Apply dark mode setting
+  // Apply settings globally
   useEffect(() => {
-    document.documentElement.classList.toggle('dark', settings.darkMode);
-  }, [settings.darkMode]);
-  
-  // Apply font size setting
-  useEffect(() => {
-    // This is a simplified example. In a real app, you might want to use
-    // CSS variables or a theming system for more advanced styling
+    // Apply font size setting
     document.documentElement.dataset.fontSize = settings.fontSize;
-  }, [settings.fontSize]);
-  
-  // Apply high contrast setting
-  useEffect(() => {
+    
+    // Apply dark mode setting
+    document.documentElement.classList.toggle('dark', settings.darkMode);
+    
+    // Apply high contrast setting
     document.documentElement.classList.toggle('high-contrast', settings.highContrast);
-  }, [settings.highContrast]);
+    
+    // Force layout recalculation when font size changes
+    if (settings.fontSize) {
+      window.dispatchEvent(new Event('resize'));
+    }
+  }, [settings.darkMode, settings.fontSize, settings.highContrast]);
   
   return {
     settings,
