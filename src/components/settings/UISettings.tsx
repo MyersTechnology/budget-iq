@@ -1,21 +1,13 @@
 
-import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Sun, Moon, Type } from "lucide-react";
+import { Sun, Moon } from "lucide-react";
+import { useSettings } from "@/hooks/useSettings";
 
 const UISettings = () => {
-  const [darkMode, setDarkMode] = useState(false);
-  const [fontSize, setFontSize] = useState("medium");
-  const [highContrast, setHighContrast] = useState(false);
-
-  const toggleDarkMode = (enabled: boolean) => {
-    setDarkMode(enabled);
-    // In a real implementation, this would toggle a class on the body or use a theme context
-    document.documentElement.classList.toggle('dark', enabled);
-  };
+  const { settings, updateSetting } = useSettings();
 
   return (
     <Card className="card-shadow">
@@ -42,8 +34,8 @@ const UISettings = () => {
             <Sun className="h-4 w-4 text-muted-foreground" />
             <Switch
               id="dark-mode"
-              checked={darkMode}
-              onCheckedChange={toggleDarkMode}
+              checked={settings.darkMode}
+              onCheckedChange={(checked) => updateSetting('darkMode', checked)}
             />
             <Moon className="h-4 w-4 text-muted-foreground" />
           </div>
@@ -53,8 +45,8 @@ const UISettings = () => {
           <Label htmlFor="font-size">Font Size</Label>
           <RadioGroup 
             id="font-size" 
-            value={fontSize} 
-            onValueChange={setFontSize}
+            value={settings.fontSize} 
+            onValueChange={(value) => updateSetting('fontSize', value as 'small' | 'medium' | 'large')}
             className="flex space-x-4"
           >
             <div className="flex items-center space-x-2">
@@ -81,8 +73,8 @@ const UISettings = () => {
           </div>
           <Switch
             id="high-contrast"
-            checked={highContrast}
-            onCheckedChange={setHighContrast}
+            checked={settings.highContrast}
+            onCheckedChange={(checked) => updateSetting('highContrast', checked)}
           />
         </div>
       </CardContent>
