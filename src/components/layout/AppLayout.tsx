@@ -18,7 +18,7 @@ const AppLayout = ({ children, className, contentClassName }: AppLayoutProps) =>
       <div className="flex-1 flex flex-col md:pl-[70px] transition-all duration-300">
         <Header />
         
-        <main className={cn("flex-1 w-full", className)}>
+        <main className={cn("flex-1 w-full pt-16", className)}>
           <div className={cn("container max-w-[1200px] p-6", contentClassName)}>
             {children}
           </div>

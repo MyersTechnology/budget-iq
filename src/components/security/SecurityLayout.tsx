@@ -9,8 +9,16 @@ interface SecurityLayoutProps {
 }
 
 const SecurityLayout = ({ children, className }: SecurityLayoutProps) => {
+  const { settings } = useSettings();
+  
   return (
-    <div className={cn("space-y-8 font-size-responsive", className)}>
+    <div 
+      className={cn(
+        "space-y-8 w-full",
+        className
+      )}
+      style={{ fontSize: settings.fontSize === "small" ? "14px" : settings.fontSize === "large" ? "18px" : "16px" }}
+    >
       {children}
     </div>
   );
