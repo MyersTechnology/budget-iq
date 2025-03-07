@@ -12,6 +12,7 @@ import ConnectedAccountsPage from "./pages/ConnectedAccountsPage";
 import RecurringExpensesPage from "./pages/RecurringExpensesPage";
 import GoalsPage from "./pages/GoalsPage";
 import SettingsPage from "./pages/SettingsPage";
+import SecurityPage from "./pages/SecurityPage";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/recurring" element={<RecurringExpensesPage />} />
           <Route path="/goals" element={<GoalsPage />} />
           <Route path="/settings" element={<SettingsPage />} />
+          <Route path="/security" element={<SecurityPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
