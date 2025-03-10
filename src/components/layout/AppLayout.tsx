@@ -2,7 +2,7 @@
 import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import Header from "./Header";
-import Sidebar from "./Sidebar";
+import NavigationMenu from "./NavigationMenu";
 
 interface AppLayoutProps {
   children: ReactNode;
@@ -13,12 +13,12 @@ interface AppLayoutProps {
 const AppLayout = ({ children, className, contentClassName }: AppLayoutProps) => {
   return (
     <div className="h-full flex w-full">
-      <Sidebar />
+      <NavigationMenu isOpen={false} onClose={() => {}} />
       
-      <div className="flex-1 flex flex-col md:pl-[70px] transition-all duration-300">
+      <div className="flex-1 flex flex-col transition-all duration-300">
         <Header />
         
-        <main className={cn("flex-1 w-full pt-20", className)}>
+        <main className={cn("flex-1 w-full pt-24", className)}>
           <div className={cn("container max-w-[1200px] px-6 py-8", contentClassName)}>
             {children}
           </div>
@@ -29,3 +29,4 @@ const AppLayout = ({ children, className, contentClassName }: AppLayoutProps) =>
 };
 
 export default AppLayout;
+
