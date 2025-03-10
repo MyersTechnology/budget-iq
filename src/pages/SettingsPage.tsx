@@ -9,7 +9,7 @@ import DataPrivacySettings from "@/components/settings/DataPrivacySettings";
 const SettingsPage = () => {
   return (
     <AppLayout>
-      <div className="w-full max-w-4xl mx-auto px-4 font-size-responsive overflow-hidden">
+      <div className="w-full max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-8">Settings</h1>
         
         <SettingsLayout>
